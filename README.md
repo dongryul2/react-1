@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# 202030334 한동렬
+## 03월 27일 수업내용
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Component의 생성 및 nesting(중첩)
+- component는 고유한 로직, 모양을 가진 ui일부
+- component는 버튼처럼 작을 수도 있고, 전체 페이지처럼 클 수도 있습니다.
+- component는 마크엄을 반환하는 javascript 함수웁니다.
+- Nesting은 CSS 선택자의 중첩구조를 생각하면 쉽게 이해가능
 
-## Available Scripts
+### export dafault와 export의 차이
+```
+Name Exports
+- 하나의 파일안에 여러개의 component가 있을 때 사용
+- component를 사용하는 쪽에서는 component 정확한 이름을 반드시 명시
 
-In the project directory, you can run:
+default Exports
+- 하나의 파일안에서 하나의 component만 내보내는 경우 사용
+- component를 사용하는 쪽에서는 어떤 이름을 사용해도 됨
+```
 
-### `npm start`
+### JSX로 마크업 작성
+- JSX는 HTML보다 더욱 엄격한 문법을 적용 합니다.
+- JSX에서는 <"br" />같이 싱글 태그라도 태그를 닫아여 합니다
+- React에서는 여러 개의 component를 JSX 태그로 반활할 수 있습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 스타일 추가하기
+- React에서는 className으로 CSS 클래스를 지정합니다.
+- className은 HTML의 class 속성과 동일한 방식으로 동작합니다.
+- CSS규칙은 별도의 CSS 파일에 작성합니다. 그런데 React는 CSS 파일을 추가하는 방법을 규정하지는 않습니다.
+> 정적 페이지를 작성할 때와 동일한 방법 지원
+- 가장 간단한 방법은 HTML에 <'link'> 태그를 추가하는 것입니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 데이터 표시하기
+- JSX를 사용하면 자바스크립트에 마크업을 넣을 수 있습니다.
+> 반대 아닌가? JS안의 마크업 안에 JS를 넣는 다는 것이 더 정확
+- JSX코드 내에서 JavaScript로 탈출하여 변수나 표현식 사용하는 것
+-이 방법을 "Escape Back"이라고 합니다.
+- {} 중괄호 사용해서 변수나 표현식을 사용자에게 표시하도록 하는것
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 리스트 렌더링하기
+- 컴포넌트 리스트를 렌더링하기 위해서는 for문 및 map()함수와 같은 자바스크립트 기능을 사용합니다.
+- <'li'>에 key속성이 있는 것을 주목하세요
+- 목록을 사용할 때는 각 항목에 대해 고유하게 식별하는 문자열 또는 숫자를 전달해야 합니다.
+- 항목을 삽입,삭제, 또는 재정렬할 떄 어떤 일이 일어났는지 알기 위해 key를 사용합니다.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# 
+## 03월 20일 수업내용
