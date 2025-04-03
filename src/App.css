@@ -37,5 +37,11 @@
   }
 }
 .wrapper {
+  width: 25%;
+  margin :auto;
   text-align: center;
+}
+.wrapper > div {
+  width: 30%;
+  float: left;
 }
