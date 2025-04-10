@@ -1,25 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import './App.css';
+import Board from './Board';
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          123
-        </a>
-      </header>
+    <div>
+      <h1>Tic Tac Toe 게임</h1>
+      <Board />
     </div>
   );
 }
-
-export default App;
+  
