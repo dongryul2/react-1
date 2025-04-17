@@ -4,6 +4,171 @@
 ### slice()메서드
 - array.slice(start, end)
 > 인자로 start, end 가짐
+------
+▼ 아래 내용은 submain 브랜치 4월 17일 README와 동일함 
+### 새로운 문법 화살표 함수
+- ( ) =>
+> 간단하게 함수 표시
+### 모든영역 클릭시 x 표시
+```jsx
+import Square from "./Square";
+import {
+  useState
+} from 'react';
+
+export default function Board() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  function handleClick(i) {
+    const nextSquares = squares.slice()
+    nextSquares[i] = "x"
+    setSquares(nextSquares)
+  }
+  return(
+    <>
+      <div className="board-row">
+        <Square value={squares[0]} onSquareClick={()=> handleClick(0)} />
+        <Square value={squares[1]} onSquareClick={()=> handleClick(1)} />
+        <Square value={squares[2]} onSquareClick={()=> handleClick(2)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} onSquareClick={()=> handleClick(3)} />
+        <Square value={squares[4]} onSquareClick={()=> handleClick(4)} />
+        <Square value={squares[5]} onSquareClick={()=> handleClick(5)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} onSquareClick={()=> handleClick(6)} />
+        <Square value={squares[7]} onSquareClick={()=> handleClick(7)} />
+        <Square value={squares[8]} onSquareClick={()=> handleClick(8)} />
+      </div>
+    </>
+  );
+}
+```
+### state 끌어올리기 <중요>
+- DOM `<button>` 엘리먼트의 on click 어트리뷰트는 빌트인 컴포넌트이기에 react에서 특별한 의미를 가짐
+
+- 사용자 정의 컴포넌트, 예를 들어 Square 경우 이름은 사용자가 원하는 대로 지을 수 있음.
+
+### 불변성?
+값이나 상태를 변경할 수 없음을 의미
+
+### 불변성이 왜 중요한가
+ 최종 결과는 같지만, 원본 데이터를 직접 변형하지 않음으로서 몇 가지 이점을 얻을수 있음
+
+- 불변성을 사용하면 복잡한 기능을 훨씬 쉽게 구현할 수 있음
+
+- 기본적으로 부모 컴포넌트 state가 변경되면 모든 자식 컴포넌트가 자동으로 다시 렌더링 됨
+
+- 불변성을 사용하면 컴포넌트가 데이터의 변경 여부를 저렴한 비용으로 판단할 수 있음.
+
+### x, o 교대로 두기 코드 수정
+```js
+export default function Board() {
+  const [xIsNext, setXIsNext] = useState(true); 
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  function handleClick(i) {
+    const nextSquares = squares.slice()
+    if (xIsNext) {
+      nextSquares[i] = "x"
+    } else {
+      nextSquares[i] = "o"
+    }
+    setSquares(nextSquares)
+    setXIsNext(!xIsNext);
+  }
+}
+```
+
+### 두번 클릭시 바뀌는 값 수정
+```js
+function handleClick(i) {
+    if (squares[i]) {
+      return;
+    }
+```
+> return값이 없는이유 : '함수를 즉시 종료해라'를 의미
+
+### 구조분해할당
+배열이나 객체의 구조를 해체하여 내부 값을 개별 변수에 쉽게 할당하는 방법
+- 이를 통해 코드 강결성, 가독성 높임
+
+### 최종 틱택토 코드 [Board.js]
+```JS
+import Square from "./Square";
+import {
+  useState
+} from 'react';
+
+
+export default function Board() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  function handleClick(i) {
+    if (squares[i] || calculateWinner(squares)) {
+      return;
+    }
+    const nextSquares = squares.slice()
+    if (xIsNext) {
+      nextSquares[i] = "x"
+    } else {
+      nextSquares[i] = "o"
+    }
+    setSquares(nextSquares)
+    setXIsNext(!xIsNext);
+  }
+
+  function calculateWinner(squares) {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],     
+    ];
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+        return squares[a];
+      }
+    }
+    return null;
+  }
+
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = "Winner: " + winner;
+  } else {
+    status = "Next player: " + (xIsNext ? "X" : "O");
+  }
+
+
+  return(
+    <>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        <Square value={squares[0]} onSquareClick={()=> handleClick(0)} />
+        <Square value={squares[1]} onSquareClick={()=> handleClick(1)} />
+        <Square value={squares[2]} onSquareClick={()=> handleClick(2)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} onSquareClick={()=> handleClick(3)} />
+        <Square value={squares[4]} onSquareClick={()=> handleClick(4)} />
+        <Square value={squares[5]} onSquareClick={()=> handleClick(5)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} onSquareClick={()=> handleClick(6)} />
+        <Square value={squares[7]} onSquareClick={()=> handleClick(7)} />
+        <Square value={squares[8]} onSquareClick={()=> handleClick(8)} />
+      </div>
+    </>
+  );
+}
+```
+
 
 
 
