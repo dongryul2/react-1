@@ -168,8 +168,7 @@ export default function Board() {
   );
 }
 ```
-
-
+### history 및 handleplay 그리고 board.js > game.js
 
 
 ## 04월 10일 수업내용(틱택토게임)
