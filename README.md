@@ -1,5 +1,55 @@
 # 202030334 한동렬 
 
+## 04월 18일 보강
+### 화면 한줄꺠짐 수정
+```js
+export default function Square({value, onSquareClick}) {
+    return(
+        <>
+          <button className="square" onClick={onSquareClick}>
+            {value}
+          </button>
+        </>
+    );
+  }
+```
+### 과거 움직임 수정
+```js
+function jumpTo(nextMove) {
+    // TODO
+  }
+
+  const moves = history.map((squares, move) => {
+    let description;
+    if (move > 0) {
+      description = 'Go to move #' + move;
+    } else {
+      description = 'Go to game start';
+    } 
+    return (
+      <li>
+        <button onClick={() => jumpTo(move)}>{description}</button>
+      </li>
+    );
+  });
+```
+### map의 기본 구문
+- map(callbackFn)
+
+- map(callbackFn, thisArg)
+> thisArg = 내부에서 this로 사용할 값을 지정하는데 화살표 함수에선 생략
+
+- 원본배열(history) : map이 호출된 원본 배열
+- 원본배열 인덱스(move) : 현재 순환 중인 원본 배열 요소의 인덱스
+- 요소 값 (squares) : 현재 순회 중인 요소 배열의 값
+
+### key 선택하기
+- key는 react에서 특별하게 미리 지정된 프로퍼티
+- 엘리먼트가 생성되면 react는 key 프로퍼티를 추출하여 반환되는 엘리먼트에 직업 key를 지정
+- key가 props로 전달되는것처럼 보일 수 있지만 react는 자동으로 key를 사용해 업데이트할 컴포넌트를 결정
+
+### 틱택토 최종 마무리 [submain 브랜치 Game.js] 수정
+
 ## 04월 17일 수업(틱택토)
 ### 새로운 문법 화살표 함수
 - ( ) =>
