@@ -1,24 +1,32 @@
-function ProductCategoryRow({ category }) {
+import './App.css'
+
+export default function App() {
   return (
-    <tr>
-      <th colSpan="2">
-        {category}
-      </th>
-    </tr>
+    <>
+      <FilterableProductTable products={PRODUCTS} />;
+    </>
+  )
+}
+
+function FilterableProductTable({ products }) {
+  return (
+    <div>
+      <SearchBar />
+      <ProductTable products={products} />
+    </div>
   );
 }
 
-function ProductRow({ product }) {
-  const name = product.stocked ? product.name :
-    <span style={{ color: 'red' }}>
-      {product.name}
-    </span>;
-
+function SearchBar() {
   return (
-    <tr>
-      <td>{name}</td>
-      <td>{product.price}</td>
-    </tr>
+    <form>
+      <input type="text" placeholder="Search..." />
+      <label>
+        <input type="checkbox" />
+        {' '}
+        Only show products in stock
+      </label>
+    </form>
   );
 }
 
@@ -55,25 +63,27 @@ function ProductTable({ products }) {
   );
 }
 
-function SearchBar() {
+function ProductCategoryRow({ category }) {
   return (
-    <form>
-      <input type="text" placeholder="Search..." />
-      <label>
-        <input type="checkbox" />
-        {' '}
-        Only show products in stock
-      </label>
-    </form>
+    <tr>
+      <th colSpan="2">
+        {category}
+      </th>
+    </tr>
   );
 }
 
-function FilterableProductTable({ products }) {
+function ProductRow({ product }) {
+  const name = product.stocked ? product.name :
+    <span style={{ color: 'red' }}>
+      {product.name}
+    </span>;
+
   return (
-    <div>
-      <SearchBar />
-      <ProductTable products={products} />
-    </div>
+    <tr>
+      <td>{name}</td>
+      <td>{product.price}</td>
+    </tr>
   );
 }
 
@@ -86,6 +96,7 @@ const PRODUCTS = [
   {category: "Vegetables", price: "$1", stocked: true, name: "Peas"}
 ];
 
-export default function App() {
-  return <FilterableProductTable products={PRODUCTS} />;
-}
+
+
+
+
