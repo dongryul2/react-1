@@ -8,7 +8,27 @@
 > 2. 공통부모를 찾아보기
 > 3. 어디에 state가 존재해야 할지 정해보기
 - Hooks = react 기능에 연결할 수 있게 해주는 특별한 함수
- 
+### susubmain 코드 수정
+### state로 FilterableProductTabel 수정
+```js
+  function FilterableProductTable({ products }) {
+    const [filterText, setFilterText] = useState('');
+    const [inStockOnly, setInStockOnly] = useState(false);
+  }
+```
+### ProductTable, Searbar에 props로 전달 수정
+```js
+  <div>
+  <SearchBar
+    filterText={filterText}
+    inStockOnly={inStockOnly} />
+  <ProductTable
+    products={products}
+    filterText={filterText}
+    inStockOnly={inStockOnly} />
+</div>
+```
+5. 역 데이터 흐름 추가하기
 
 ## 05월 08일 수업내용
 ### react 학습하기 > react로 사고하기
