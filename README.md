@@ -18,6 +18,8 @@
  1. github 홈에서 new 하기
  2. 레파지토리이름을 id.github.io로 생성
  3. id.github.io/ 로 접속
+### 원래있는 레파지토리 깃허브 배포법
+> setting > pages > branch설정 main or master > /(root)설정 
 
 ## 05월 29일 수업내용
 ### 처음부터 react앱 만들기
