@@ -1,7 +1,23 @@
 # 202030334 한동렬
 
 ## 06월 05일 수업내용
+### 기존 React 프로젝트에 TypeScript 추가하기
+- 터미널 ( 최신 버전 React 타입 정의 설치 )
+ > npm install @types/react @types/react-dom
+ 
+ - 1. dom은 lib에 포함되어야 함
 
+- 2. jsx를 유효한 옵션 중 하나로 설정해야 함 대부분의 애플리케이션에서는 preserve로 충분
+
+ ### React 컴포넌트가 있는 TypeScript 
+
+ - JSX를 포함하고 있는 모든 파일은 .tsx 파일 확장자를 사용해야 함. 이는 이 파일이 JSX를 포함하고 있음을 TypeScript에 알려주는 TypeScript 전용 확장자
+
+ ### github 배포하는법
+
+ 1. github 홈에서 new 하기
+ 2. 레파지토리이름을 id.github.io로 생성
+ 3. id.github.io/ 로 접속
 
 ## 05월 29일 수업내용
 ### 처음부터 react앱 만들기
